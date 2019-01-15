@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Cookie|Luckiest+Guy|Shrikhand');
 
 body {
-    background-color: antiquewhite
+    background-color: antiquewhite;
 }
 
 header {
@@ -37,7 +37,7 @@ label {
 button {
     display: block;
     margin: auto;
-    font-size: 2em
+    font-size: 2em;
 }
 
 #button1 {
@@ -58,7 +58,7 @@ footer {
 
 footer h1 {
     position: relative;
-    top: 3rem;
+    top: 2rem;
 }
 
 .impact {
