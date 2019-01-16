@@ -1,31 +1,14 @@
 "use strict";
 
-var tracker = 0;
+//Tracks progress through the game
+var tracker = 1;
 
+//Element getter thing
 function $(id) {
     return document.getElementById(id);
 }
 
-function updateGameOverMessage(x) {
-    var message;
-    
-    switch (x) {
-        case 0:
-            message = "Just because the Internet said it, does not make it true.<br>BWAHAHAHA!!!!!";
-            break;
-        default:
-            message = "";
-    }
-    var html = "<h1 class=\"game_over\">" + message + "<h1>" +
-        "<h2>Push reload to try again</h2>";
-    return html;
-}
-
-function gameOver() {
-    alert("You, good sir, have lost.");
-    $("body").innerHTML = updateGameOverMessage(tracker);
-}
-
+//Randomize the placeholder for the character name
 var randomizePlaceholder = function() {
     var numero = Math.floor((Math.random() * 10) + 1);
     var placeholderAttribute = "";
@@ -66,9 +49,58 @@ var randomizePlaceholder = function() {
     $("name").setAttribute("placeholder", placeholderAttribute);
 }
 
+//Creates different Game Over messages for each step of the game
+function updateGameOverMessage(x) {
+    var message;
+    
+    switch (x) {
+        case 1:
+            message = "Just because the Internet said it, does not make it true.<br>BWAHAHAHA!!!!!";
+            break;
+        default:
+            message = "";
+    }
+    var html = "<h1 class=\"game_over\">" + message + "<h1>" +
+        "<h2>Push reload to try again</h2>";
+    return html;
+}
+
+//Displays the Game Over screen
+function gameOver() {
+    alert("You, good sir, have lost.");
+    $("body").innerHTML = updateGameOverMessage(tracker);
+}
+
+//Gets the html for the next stage of the game
+var updatePage = function(x) {
+    var html = "";
+    
+    switch (x) {
+        case 1:         //Current stage
+            html = "This is stage two"; //Stage two html
+            break;
+    }
+    
+    return html;
+}
+
+
+//Progresses game, called when player selects the right answer
+var progressGame = function(x) {
+    $("body").innerHTML = updatePage(x);
+    tracker++;
+}
+
+//Calls progress() on click of the right answer
+var OnCorrectChoice = function() {
+    progressGame(tracker);
+}
 
 window.onload = function() {
     $("button1").onclick = gameOver;
+    $("correctAnswer").onclick = OnCorrectChoice;
+    
     randomizePlaceholder();
 }
 
+//TODO: function to assign event handlers after each progression
